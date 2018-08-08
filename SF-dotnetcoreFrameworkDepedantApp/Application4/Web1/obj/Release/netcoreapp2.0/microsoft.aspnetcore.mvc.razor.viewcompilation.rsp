@@ -1,0 +1,5 @@
+C:\src\Application4\Web1
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=Web1
+--content-root=C:\src\Application4\Web1
+--file=
