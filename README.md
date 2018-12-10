@@ -20,9 +20,3 @@ You can validate the script by deploying the application SF-dotnetcoreFrameworkD
 
 - dotnet core requirements: https://docs.microsoft.com/en-us/dotnet/core/windows-prerequisites?tabs=netcore2x
 - VMSS extension FAQ: https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-faq#extensions
-
-## Issues
-
-- Cannot use dotnet.exe as EntryPoint - awaiting Oana
-- Need to restart nodes to update path?
-- I want to avoid having a setup script in my service to find dotnet and call it
