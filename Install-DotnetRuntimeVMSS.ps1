@@ -1,13 +1,23 @@
-$resourceGroup = "wincluster"
-$vmssName = "default"
+Param(
+  [string]$resourceGroup,
+  [string]$vmssName
+)
 
 # Set the config
-$fileUris = @("https://mikhegn.blob.core.windows.net/temp/install-dotnetcore.ps1")
+$fileUris = @("https://raw.githubusercontent.com/MikkelHegn/vmss-dotnet-custom-script-extension/master/install-dotnetvmss.ps1")
 $commandToExecute = 'powershell -NoProfile -ExecutionPolicy unrestricted -Command ./install-dotnetcore.ps1'
 $settings = @{"fileUris" = $fileUris; "commandToExecute" = $commandToExecute}
 
 # Get information about the scale set
 $vmss = Get-AzureRmVmss -ResourceGroupName $resourceGroup -VMScaleSetName $vmssName
+
+$csExtension = $vmss.VirtualMachineProfile.ExtensionProfile.Extensions | where Type -eq CustomScriptExtension
+
+if ($csExtension) {
+  Write-Host "Error: CustomScriptExtension already in use on VMSS, remove before applying a new one." -ForegroundColor Red -BackgroundColor Black;
+  $csExtension;
+  break;
+}
 
 # Add the Custom Script Extension to install IIS and configure basic website
 $vmss = Add-AzureRmVmssExtension `
@@ -16,7 +26,8 @@ $vmss = Add-AzureRmVmssExtension `
   -Publisher "Microsoft.Compute" `
   -Type "CustomScriptExtension" `
   -TypeHandlerVersion 1.9 `
-  -AutoUpgradeMinorVersion $true
+  -AutoUpgradeMinorVersion $true `
+  -ForceUpdateTag 1.0 `
   -Setting $settings
 
 # Update the scale set and apply the Custom Script Extension to the VM instances
