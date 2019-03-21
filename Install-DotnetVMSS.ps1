@@ -1,7 +1,7 @@
 Param(
     [string]$dotnetInstallDir = 'C:\dotnet',
     [string]$dotnetVersion = 'Latest',
-    [string]$dotnetChannel = '2.0'
+    [string]$dotnetChannel = 'Current'
 )
 
 # Set system path to dotnet installation
