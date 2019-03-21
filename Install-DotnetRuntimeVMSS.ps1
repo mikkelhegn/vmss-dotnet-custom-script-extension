@@ -5,7 +5,7 @@ Param(
 
 # Set the config
 $fileUris = @("https://raw.githubusercontent.com/MikkelHegn/vmss-dotnet-custom-script-extension/master/Install-DotnetVMSS.ps1")
-$commandToExecute = 'powershell -NoProfile -ExecutionPolicy unrestricted -Command ./install-dotnetcore.ps1'
+$commandToExecute = 'powershell -NoProfile -ExecutionPolicy unrestricted -File ./Install-DotnetVMSS.ps1'
 $settings = @{"fileUris" = $fileUris; "commandToExecute" = $commandToExecute}
 
 # Get information about the scale set
