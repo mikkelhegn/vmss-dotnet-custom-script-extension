@@ -4,7 +4,7 @@ Param(
 )
 
 # Set the config
-$fileUris = @("https://raw.githubusercontent.com/MikkelHegn/vmss-dotnet-custom-script-extension/master/install-dotnetvmss.ps1")
+$fileUris = @("https://raw.githubusercontent.com/MikkelHegn/vmss-dotnet-custom-script-extension/master/Install-DotnetVMSS.ps1")
 $commandToExecute = 'powershell -NoProfile -ExecutionPolicy unrestricted -Command ./install-dotnetcore.ps1'
 $settings = @{"fileUris" = $fileUris; "commandToExecute" = $commandToExecute}
 
