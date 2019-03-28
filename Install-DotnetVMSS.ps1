@@ -1,7 +1,8 @@
 Param(
     [string]$dotnetInstallDir = 'C:\dotnet',
     [string]$dotnetVersion = 'Latest',
-    [string]$dotnetChannel = 'Current'
+    [string]$dotnetChannel = 'Current',
+    [string]$dotnetruntime = 'dotnet'
 )
 
 # Set system path to dotnet installation
@@ -11,4 +12,4 @@ Param(
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
 
 # Download and run dotnet-install.ps1
-&([scriptblock]::Create((Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -UseBasicParsing))) -Runtime dotnet -Channel $dotnetChannel -Version $dotnetVersion -InstallDir $dotnetInstallDir -NoPath;
+&([scriptblock]::Create((Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -UseBasicParsing))) -Runtime $dotnetruntime -Channel $dotnetChannel -Version $dotnetVersion -InstallDir $dotnetInstallDir -NoPath;
